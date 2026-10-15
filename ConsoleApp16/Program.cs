@@ -52,4 +52,25 @@
     {
         decimal CalculateInsurance();
     }
+    static class DeliveryUtilities
+    {
+        public static void PrintSeparator()
+        {
+            Console.WriteLine("==========================================");
+        }
+
+        public static void PrintSystemTitle()
+        {
+            Console.WriteLine("Delivery Center");
+        }
+    }
+    static class shipmentextensions
+    {
+        public static string GetSummary(this Shipment s)
+        {
+            return $"{s.code}||{s.weight}||{s.description}";
+        }
+
+
+    }
 }
