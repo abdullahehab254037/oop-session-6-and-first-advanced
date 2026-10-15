@@ -4,7 +4,86 @@
     {
         static void Main(string[] args)
         {
-          
+           // DeliveryCenter deliveryCenter = new DeliveryCenter();
+           // for (int i = 0; i < 3; i++)
+           // {
+           //     Console.WriteLine("enter city");
+           //     string city = Console.ReadLine();
+           //     Console.WriteLine("enter street");
+           //     string street = Console.ReadLine();
+           //     Console.WriteLine("enter building number");
+           //     int buldingnum = Convert.ToInt32(Console.ReadLine());
+           //     DeliveryAddress deliveryAddress = new DeliveryAddress(city, street, buldingnum);
+           //     Console.WriteLine("enter code");
+           //     string code = Console.ReadLine();
+           //     Console.WriteLine("enter descr");
+           //     string descr = Console.ReadLine();
+           //     Console.WriteLine("enter weight");
+           //     int weight = Convert.ToInt32(Console.ReadLine());
+           //     Console.WriteLine("enter fee");
+           //     int fee = Convert.ToInt32(Console.ReadLine());
+           //     if (i == 0)
+           //     {
+           //         StandardShipment standard = new StandardShipment(code, descr, weight, fee, deliveryAddress);
+           //         deliveryCenter[i] = standard;
+           //     }
+           //     if (i == 1)
+           //     {
+           //         Console.WriteLine("enter extra fee");
+           //         int extrafee = Convert.ToInt32(Console.ReadLine());
+           //         ExpressShipment express = new ExpressShipment(code, descr, weight, fee, deliveryAddress, extrafee);
+           //         deliveryCenter[i] = express;
+           //     }
+           //     if (i == 2)
+           //     {
+           //         Console.WriteLine("enter custom fee");
+           //         int customfee = Convert.ToInt32(Console.ReadLine());
+           //         string dest = Console.ReadLine();
+           //         InternationalShipment international = new InternationalShipment(code, descr, weight, fee, deliveryAddress, dest, customfee);
+           //         deliveryCenter[i] = international;
+           //
+           //     }
+           //
+           //
+           //     // deliveryCenter.AddShipment(shipment);
+           // }
+           // for (int i = 0; i < 3; i++)
+           // {
+           //     deliveryCenter[i].PrintShipment();
+           // }
+           // deliveryCenter.printallshipments();
+           // deliveryCenter.PrintInsuranceIInsurableshipment();
+           // deliveryCenter.PrintShipmentITrackableshipment();
+           // decimal[] IInsurable = new decimal[deliveryCenter.Capacity];
+           // string[] ITrackable = new string[deliveryCenter.Capacity];
+           // for (int i = 0; i < deliveryCenter.Capacity; i++)
+           // {
+           //     IInsurable[i] = deliveryCenter[i].CalculateInsurance();
+           // }
+           // for (int i = 0; i < deliveryCenter.Capacity; i++)
+           // {
+           //     ITrackable[i] = deliveryCenter[i].GetTrackingStatus();
+           // }
+           // for (int i = 0; i < IInsurable.Length; i++)
+           // {
+           //     Console.WriteLine(IInsurable[i]);
+           // }
+           // for (int i = 0; i < ITrackable.Length; i++)
+           // {
+           //     Console.WriteLine(ITrackable[i]);
+           // }
+           // Shipment s1 = new StandardShipment("sh01", "good", 44, 50, new DeliveryAddress("giza", "street1", 10));
+           // Shipment s2 = s1.ShallowCopy();
+           // s2.Destination.city = "cairo";//value will be changed in the two shipment
+           // Shipment s3 = new StandardShipment("sh03", "bad", 40, 55, new DeliveryAddress("alex", "street44", 70));
+           // s3 = s1.DeepCopy(s3);
+           // s3.Destination.city = "cairo";//value will be changed in the s3 only
+           // Console.WriteLine(Shipment.GetTotalShipmentsCreated());
+           // s3.GetSummary();
+           // DeliveryUtilities.PrintSeparator();
+           // DeliveryUtilities.PrintSystemTitle();
+           // DeliveryUtilities.PrintSeparator();
+            // generic class is class that can handle any refrence or value type
         }
     }
     public class Container<T>
