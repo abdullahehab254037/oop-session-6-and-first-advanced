@@ -73,4 +73,134 @@
 
 
     }
+    public abstract partial class Shipment : ITrackable, IInsurable
+    {
+        private string TrackingCode;
+        private string Description;
+        private int Weight;
+        private int DeliveryFee;
+        public DeliveryAddress Destination;
+        public static int TotalShipmentsCreated;
+
+        public Shipment(string trackingCode, string description, int weight, int deliveryFee, DeliveryAddress destination)
+        {
+            TrackingCode = trackingCode;
+            Description = description;
+            Weight = weight;
+            DeliveryFee = deliveryFee;
+            Destination = destination;
+            TotalShipmentsCreated++;
+
+        }
+        static Shipment()
+        {
+            TotalShipmentsCreated = 0;
+            Console.WriteLine("Shipment System Initialized");
+        }
+        public static int GetTotalShipmentsCreated()
+        {
+            return TotalShipmentsCreated;
+        }
+        public string TrackingStatus { get; private set; }
+
+        public void UpdateTrackingStatus(string newStatus)
+        {
+            TrackingStatus = newStatus;
+
+            OnTrackingStatusChanged(newStatus);
+        }
+
+        partial void OnTrackingStatusChanged(string newStatus);
+
+
+
+        public string code
+        {
+            get
+            {
+                return TrackingCode;
+            }
+            set { if (value != null) { TrackingCode = value; } }
+        }
+
+
+
+        public string description
+        {
+            get { return Description; }
+            set
+            {
+                if (value != null) { Description = value; }
+            }
+        }
+        public int weight
+        {
+            get { return Weight; }
+            set { if (value > 0) { Weight = value; } }
+        }
+        public int deliveryFee
+        {
+            get { return DeliveryFee; }
+            set { if (value > 0) { DeliveryFee = value; } }
+        }
+        public DeliveryAddress deliveryAddress { get; set; }
+        public abstract int EstimatedCost
+        {
+            get;
+        }
+        public void UpdateDeliveryFee(int newFee)
+        {
+            if (newFee > 0)
+            {
+                DeliveryFee = newFee;
+            }
+        }
+    }
+    public abstract partial class Shipment : ITrackable, IInsurable
+    {
+        public virtual void PrintShipment()
+        {
+            Console.WriteLine($"tracking code:{TrackingCode},,,,description:{Description},,,,weight:{Weight},,,,delivery fee:{DeliveryFee}");
+        }
+
+        public abstract string GetTrackingStatus();
+
+        public abstract decimal CalculateInsurance();
+
+
+        public Shipment CopyShipment(Shipment copy)
+        {
+            return this;
+        }
+        public Shipment ShallowCopy()
+        {
+            return (Shipment)this.MemberwiseClone();
+        }
+        public Shipment DeepCopy(Shipment copy)
+        {
+
+            copy.deliveryFee = this.deliveryFee;
+            copy.code = this.code;
+            copy.description = this.description;
+            copy.weight = this.weight;
+            copy.Destination = new DeliveryAddress(this.Destination.city, this.Destination.street, this.Destination.BuildingNumber);
+            return copy;
+        }
+        partial void OnTrackingStatusChanged(string newStatus)
+        {
+            Console.WriteLine($"Tracking status changed to: {newStatus}");
+        }
+
+
+
+        public Shipment(string trackingCode)
+        {
+            this.TrackingCode = trackingCode;
+            Description = "Unknown";
+            Weight = 1;
+            DeliveryFee = 50;
+            Destination = default;
+        }
+
+    }
 }
