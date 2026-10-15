@@ -280,4 +280,124 @@
 
 
     }
+    public class StandardShipment : Shipment, IInsurable, ITrackable
+    {
+        public StandardShipment(string trackingCode, string description, int weight, int deliveryFee, DeliveryAddress destination) : base(trackingCode, description, weight, deliveryFee, destination)
+        {
+
+        }
+
+
+        public override int EstimatedCost
+        {
+            get { return base.deliveryFee + (base.weight * 5); }
+        }
+
+        public override decimal CalculateInsurance()
+        {
+            return (this.EstimatedCost * (5 / 10));
+        }
+
+        public override string GetTrackingStatus()
+        {
+            return (this.code + "is ready");
+        }
+
+        public override void PrintShipment()
+        {
+            base.PrintShipment();
+            Console.WriteLine($"estimated:{this.EstimatedCost}");
+        }
+
+
+    }
+    public class ExpressShipment : Shipment, IInsurable, ITrackable
+    {
+        private int ExtraFee;
+        public ExpressShipment(string trackingCode, string description, int weight, int deliveryFee, DeliveryAddress destination, int extrafee) : base(trackingCode, description, weight, deliveryFee, destination)
+        {
+            ExtraFee = extrafee;
+        }
+        public int extrafee
+        {
+            get { return ExtraFee; }
+            set { if (extrafee > 0) { ExtraFee = value; } }
+        }
+        //public decimal EstimatedCost
+        //{
+        //    get { return this.EstimatedCost + ExtraFee; }
+        //}
+        public override int EstimatedCost
+        {
+            get { return base.deliveryFee + (base.weight * 5) + ExtraFee; }
+        }
+        public override decimal CalculateInsurance()
+        {
+            return (this.EstimatedCost * (8 / 10));
+        }
+
+        public override string GetTrackingStatus()
+        {
+            return (this.code + "out of delivery");
+        }
+        public override void PrintShipment()
+        {
+            base.PrintShipment();
+            Console.WriteLine($"estimated:{this.EstimatedCost},,,,esxtrafee:{ExtraFee}");
+        }
+    }
+
+
+    public class InternationalShipment : Shipment, IInsurable, ITrackable
+    {
+        private int CustomsFee;
+        private string DestinationCountry;
+        public InternationalShipment(string trackingCode, string description, int weight, int deliveryFee, DeliveryAddress destination, string destinationCountry,
+            int customsFee) : base(trackingCode, description, weight, deliveryFee, destination)
+        {
+            DestinationCountry = destinationCountry;
+            CustomsFee = customsFee;
+        }
+        public string destinationCountry
+        {
+            get { return DestinationCountry; }
+            set
+            {
+                if (value != null) { DestinationCountry = value; }
+            }
+        }
+        public override decimal CalculateInsurance()
+        {
+            return (this.EstimatedCost * (12 / 10));
+        }
+
+        public override string GetTrackingStatus()
+        {
+            return (this.code + "has been Delivered.");
+        }
+        public int customsFee
+        {
+            get { return CustomsFee; }
+            set
+            {
+                if (value > 0)
+                {
+                    CustomsFee = value;
+                }
+            }
+        }
+        //public decimal EstimatedCost
+        //{
+        //    get { return this.EstimatedCost + CustomsFee; }
+        //}
+        public override int EstimatedCost
+        {
+            get { return base.deliveryFee + (base.weight * 5); }
+        }
+        public override void PrintShipment()
+        {
+            base.PrintShipment();
+            Console.WriteLine($"estimated:{this.EstimatedCost},,,,customfee:{CustomsFee},,,,country:{DestinationCountry}");
+        }
+    }
 }
